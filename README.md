@@ -1,5 +1,6 @@
 # Custom_Calculator
 Calculator component with custom design and functions 
+
 Hi!
 
 This is an attempt to design a calculator that derives UI design heavily from default options offered by iOS and OnePlus's OxygenOS. 

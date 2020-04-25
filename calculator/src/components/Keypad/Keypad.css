@@ -58,6 +58,14 @@
     font-weight: 600;
     line-height: 20px;
     font-family: Arial, Helvetica, sans-serif;
+    user-select: none;
+}
+
+.func-rows > p:active
+{
+    background-color: gray;
+    box-shadow: 0px 0px 5px gray;
+    transform: translateY(1px);
 }
 
 .num-rows > p
@@ -75,7 +83,17 @@
     font-weight: bold;
     line-height: 20px;
     font-family: Arial, Helvetica, sans-serif;
+    user-select: none;
 }
+
+.num-rows > p:active
+{
+    background-color: #565656;
+    box-shadow: 0px 0px 5px gray;
+    transform: translateY(1px);
+}
+
+
 
 #double-size
 {
@@ -98,10 +116,24 @@
     line-height: 20px;
 }
 
+.num-rows > .four-or:active
+{
+    background-color: #cd7700;
+    box-shadow: 0px 0px 5px #a6a6a6;
+    transform: translateY(1px);
+}
+
 .func-rows > .four-or
 {
     background-color: #ff9501;
     color: white;
     text-align: center;
     line-height: 20px;
+}
+
+.func-rows > .four-or:active
+{
+    background-color: #cd7700;
+    box-shadow: 0px 0px 5px #a6a6a6;
+    transform: translateY(1px);   
 }

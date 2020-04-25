@@ -151,6 +151,11 @@ class Keypad extends Component {
         this.setState({operator_flag : false})
     }
     
+    // handleEqualSign = () =>{
+    //     let temp = this.state.operation_object
+    //     Object.assign(temp, {num1 : this.state.keyboard_input, num2: this.state.keyboard_input2})
+    //     this.props.operationFunc(temp)
+    // }
 
 
 
@@ -159,7 +164,7 @@ class Keypad extends Component {
         let a = {}
         switch(code){
             case 1: 
-                Object.assign(a, {div : true})
+                Object.assign(a, {op : 'div'})
                 this.setState({
                     operator_flag : true,
                     operation_object : a
@@ -167,7 +172,7 @@ class Keypad extends Component {
                 break;
 
             case 2:
-                Object.assign(a, {mul : true})
+                Object.assign(a, {op : 'mul'})
                 this.setState({
                     operator_flag : true,
                     operation_object : a
@@ -175,7 +180,7 @@ class Keypad extends Component {
                 break;
             
             case 3:
-                Object.assign(a, {add : true})
+                Object.assign(a, {op : 'add'})
                 this.setState({
                     operator_flag : true,
                     operation_object : a
@@ -183,7 +188,7 @@ class Keypad extends Component {
                 break;
             
             case 4:
-                Object.assign(a, {sub : true})
+                Object.assign(a, {op : 'sub'})
                 this.setState({
                     operator_flag : true,
                     operation_object : a
@@ -199,10 +204,6 @@ class Keypad extends Component {
         }
     }
 
-
-    handleEqualSign = () =>{
-        
-    }
 
 
     render() {
@@ -237,7 +238,11 @@ class Keypad extends Component {
                         <div className='num-rows'>
                             <p id='double-size' onClick={e => this.handleNumberInput(0)}>0</p>
                             <p onClick={e => this.handleDecimalInput()}>.</p>
-                            <p className='four-or' style={{fontSize:'19px'}}>=</p>
+                            <p 
+                                className='four-or' 
+                                style={{fontSize:'19px'}} 
+                                // onClick={e => this.handleEqualSign()}                            
+                            >=</p>
                         </div>
                     </div>       
                 </div>

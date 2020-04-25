@@ -9,6 +9,7 @@ class App extends Component{
     this.state = {
         keyboard_input : 0,
         keyboard_input2 : 0,
+        result : 0,
         operator_flag : false,
         operation_object : {},
         decimal_flag1 : false,
@@ -92,7 +93,14 @@ class App extends Component{
         if(!this.state.operator_flag) //clear for 1st number
         {
             if(code === 1)
-                this.setState({keyboard_input : 0, decimal_flag1 : false})
+                this.setState({
+                  keyboard_input : 0, 
+                  decimal_flag1 : false, 
+                  keyboard_input2 : 0, 
+                  decimal_flag2 : false, 
+                  result : 0, 
+                  operation_object : {}, 
+                  operator_flag : false})
             else if(code === 2)
             {
                 if(this.state.decimal_flag1 && !Number.isInteger(this.state.keyboard_input))
@@ -119,7 +127,14 @@ class App extends Component{
         else //clear for 2nd number
         {
              if(code === 1)
-                this.setState({keyboard_input2 : 0, decimal_flag2 : false})
+                this.setState({
+                  keyboard_input : 0, 
+                  decimal_flag1 : false, 
+                  keyboard_input2 : 0, 
+                  decimal_flag2 : false, 
+                  result : 0, 
+                  operation_object : {}, 
+                  operator_flag : false})
             else if(code === 2)
             {
                 if(this.state.decimal_flag2 && !Number.isInteger(this.state.keyboard_input2))
@@ -196,6 +211,33 @@ class App extends Component{
       this.setState({operator_flag : false, operation_object : {}})
     }
 
+    handleEqualSign =() =>{
+      let action = this.state.operation_object
+      switch(action['op']){
+        case 'div':
+            if(this.state.keyboard_input2 === 0)
+              this.setState({result : 'ERR'})
+            else
+              this.setState({result : (this.state.keyboard_input)/(this.state.keyboard_input2)})
+          break;
+        
+        case 'mul':
+            this.setState({result : (this.state.keyboard_input)*(this.state.keyboard_input2)})
+          break;
+
+        case 'add':
+            this.setState({result : (this.state.keyboard_input) + (this.state.keyboard_input2)})
+          break;
+
+        case 'sub':
+            this.setState({result : (this.state.keyboard_input)-(this.state.keyboard_input2)})
+          break;
+
+        default:
+            this.setState({result : 0})
+          break;
+      }
+    }
 
 
   render(){
@@ -207,6 +249,7 @@ class App extends Component{
             handleDecimalInput = {this.handleDecimalInput}
             handleOperatorInput = {this.handleOperatorInput}
             handleOperatorClear = {this.handleOperatorClear}
+            handleEqualSign = {this.handleEqualSign}
           />
         </div>
       );

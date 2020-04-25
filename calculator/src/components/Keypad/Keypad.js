@@ -49,7 +49,7 @@ class Keypad extends Component {
                             <p 
                                 className='four-or' 
                                 style={{fontSize:'19px'}} 
-                                // onClick={e => this.handleEqualSign()}                            
+                                onClick={e => this.props.handleEqualSign()}                            
                             >=</p>
                         </div>
                     </div>       

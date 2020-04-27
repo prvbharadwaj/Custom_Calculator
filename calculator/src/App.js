@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
-import logo from './logo.svg';
 import Keypad from './components/Keypad/Keypad';
+import OutputScreen from './components/OutputScreen/OutputScreen';
 import './App.css';
 
 class App extends Component{
@@ -218,39 +218,69 @@ class App extends Component{
             if(this.state.keyboard_input2 === 0)
               this.setState({result : 'ERR'})
             else
-              this.setState({result : (this.state.keyboard_input)/(this.state.keyboard_input2)})
+              this.setState({
+                  result : (this.state.keyboard_input)/(this.state.keyboard_input2)},
+                  () => this.updateResults()
+                  );
           break;
         
         case 'mul':
-            this.setState({result : (this.state.keyboard_input)*(this.state.keyboard_input2)})
+            this.setState({
+                result : (this.state.keyboard_input)*(this.state.keyboard_input2)},
+                () => this.updateResults()
+                );
           break;
 
         case 'add':
-            this.setState({result : (this.state.keyboard_input) + (this.state.keyboard_input2)})
+            this.setState({
+                result : (this.state.keyboard_input) + (this.state.keyboard_input2)},
+                () => this.updateResults()
+                )
           break;
 
         case 'sub':
-            this.setState({result : (this.state.keyboard_input)-(this.state.keyboard_input2)})
+            this.setState({
+                result : (this.state.keyboard_input)-(this.state.keyboard_input2)},
+                () => this.updateResults()
+                )
           break;
 
         default:
-            this.setState({result : 0})
+            this.setState({
+                result : 0},
+                () => this.updateResults()
+                )
           break;
       }
+    }
+
+    updateResults = () =>{
+          this.setState({
+          keyboard_input : this.state.result, 
+          keyboard_input2 : 0, 
+          operation_object : {}, 
+          operator_flag : false,
+          decimal_flag1 : false,
+          decimal_flag2 : false
+        })
     }
 
 
   render(){
      return (
-        <div className="App">
-          <Keypad
-            handleNumberInput = {this.handleNumberInput}
-            handleClearInput = {this.handleClearInput}
-            handleDecimalInput = {this.handleDecimalInput}
-            handleOperatorInput = {this.handleOperatorInput}
-            handleOperatorClear = {this.handleOperatorClear}
-            handleEqualSign = {this.handleEqualSign}
-          />
+         <div className='calc-master'>
+            <div className="App">
+                <OutputScreen/>
+
+            <Keypad
+                handleNumberInput = {this.handleNumberInput}
+                handleClearInput = {this.handleClearInput}
+                handleDecimalInput = {this.handleDecimalInput}
+                handleOperatorInput = {this.handleOperatorInput}
+                handleOperatorClear = {this.handleOperatorClear}
+                handleEqualSign = {this.handleEqualSign}
+            />
+            </div>
         </div>
       );
   }

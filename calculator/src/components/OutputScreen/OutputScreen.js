@@ -5,25 +5,37 @@ import './OutputScreen.css';
 class OutputScreen extends Component {
     constructor(props, ...rest) {
         super(props, ...rest);
-        this.state = {
-            op : '',
-            num1 : 0,
-            num2 : 0,
-            op_flag : false
+        this.state = {          
+            display_data : '0',
+            font_size : 20
         };
     }
+
+    componentDidUpdate(){
+        if(this.props.result === 0)
+        {
+            if(this.props.op_flag === false && this.state.display_data !== Number(this.props.num1).toLocaleString("en-US"))
+                this.setState({display_data : Number(this.props.num1).toLocaleString("en-US")})
+            else if(this.props.op_flag === true && this.state.display_data !== Number(this.props.num2).toLocaleString("en-US"))
+                this.setState({display_data : Number(this.props.num2).toLocaleString("en-US")})
+        }
+        else if(this.props.result !== 0 && this.state.display_data !== Number(this.props.result).toLocaleString("en-US"))
+            this.setState({display_data : Number(this.props.result).toLocaleString("en-US")})
+    }
+
+   
 
     render() {
         return (
             <div className='screen-master'>
                 <div className='operator-dash'>
-                    <p className={(this.state.op === 'div')?'active':'inactive'}>{'\u00F7'}</p>
-                    <p className={(this.state.op === 'mul')?'active':'inactive'}id='test'>x</p>
-                    <p className={(this.state.op === 'add')?'active':'inactive'}>+</p>
-                    <p className={(this.state.op === 'sub')?'active':'inactive'}>-</p>
+                    <p className={(this.props.op === 'div')?'active':'inactive'}>{'\u00F7'}</p>
+                    <p className={(this.props.op === 'mul')?'active':'inactive'}id='test'>x</p>
+                    <p className={(this.props.op === 'add')?'active':'inactive'}>+</p>
+                    <p className={(this.props.op === 'sub')?'active':'inactive'}>-</p>
                 </div>
                 <div className='display-section'>
-                    
+                    {this.state.display_data}
                 </div>
             </div>
         );

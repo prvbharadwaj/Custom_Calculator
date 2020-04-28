@@ -2,7 +2,7 @@
 {
     background-color:  black;
     color: white;
-    height: 90px;
+    height: 100px;
     width: 100%;
     border-top-left-radius: 10px;
     border-top-right-radius: 10px;
@@ -48,4 +48,13 @@
     color: black;
     background-color: white;
     border-radius: 50%;
+}
+.display-section
+{
+    width: 95%;
+    height: 70px;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    font-size: 30px;
 }

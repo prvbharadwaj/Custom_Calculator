@@ -270,7 +270,16 @@ class App extends Component{
      return (
          <div className='calc-master'>
             <div className="App">
-                <OutputScreen/>
+                <OutputScreen
+                    num1 = {this.state.keyboard_input}
+                    num2 = {this.state.keyboard_input2}
+                    op = {this.state.operation_object['op']}
+                    op_flag = {this.state.operator_flag}
+                    result = {this.state.result}
+                    // decimal_flag1 = {this.state.decimal_flag1}
+                    // decimal_flag2 = {this.state.decimal_flag2}
+                    // result_decimal_flag = {!(Number.isInteger(this.state.result))}
+                />
 
             <Keypad
                 handleNumberInput = {this.handleNumberInput}

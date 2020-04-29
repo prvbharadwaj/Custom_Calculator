@@ -21,57 +21,63 @@ class App extends Component{
   handleNumberInput = (num) =>{
         if(!this.state.operator_flag) //holds 1st number
         {
-            if(this.state.decimal_flag1)
+            if(this.state.keyboard_input.toString().length <= 12) //restricts length to fit display
             {
-                if(Number.isInteger(this.state.keyboard_input))
+                if(this.state.decimal_flag1)
+                {
+                    if(Number.isInteger(this.state.keyboard_input))
+                    {
+                        this.setState({
+                            keyboard_input : this.state.keyboard_input + num/10
+                        })
+                    }
+                    else
+                    {
+                        let temp = parseInt(this.state.keyboard_input.toString().split(".")[1])
+                        let temp2 = temp*10 + num
+                        let len = temp2.toString().length
+                        this.setState({
+                            keyboard_input : parseInt(this.state.keyboard_input) + temp2/(Math.pow(10,len))
+                        })
+                    }
+                }
+                else if(!this.state.decimal_flag1)
                 {
                     this.setState({
-                        keyboard_input : this.state.keyboard_input + num/10
-                    })
+                        keyboard_input : this.state.keyboard_input*10 + num
+                    });
                 }
-                else
-                {
-                    let temp = parseInt(this.state.keyboard_input.toString().split(".")[1])
-                    let temp2 = temp*10 + num
-                    let len = temp2.toString().length
-                    this.setState({
-                        keyboard_input : parseInt(this.state.keyboard_input) + temp2/(Math.pow(10,len))
-                    })
-                }
-            }
-            else if(!this.state.decimal_flag1)
-            {
-                this.setState({
-                    keyboard_input : this.state.keyboard_input*10 + num
-                });
             }
         }
         else //holds 2nd number
         {
-            if(this.state.decimal_flag2)
+            if(this.state.keyboard_input2.toString().length <= 12) //restricts length to fit display
             {
-                if(Number.isInteger(this.state.keyboard_input2))
+                if(this.state.decimal_flag2)
+                {
+                    if(Number.isInteger(this.state.keyboard_input2))
+                    {
+                        this.setState({
+                            keyboard_input2 : this.state.keyboard_input2 + num/10
+                        })
+                    }
+                    else
+                    {
+                        let temp = parseInt(this.state.keyboard_input2.toString().split(".")[1])
+                        let temp2 = temp*10 + num
+                        let len = temp2.toString().length
+                        this.setState({
+                            keyboard_input2 : parseInt(this.state.keyboard_input2) + temp2/(Math.pow(10,len))
+                        })
+                    }
+                }
+                else if(!this.state.decimal_flag2)
                 {
                     this.setState({
-                        keyboard_input2 : this.state.keyboard_input2 + num/10
-                    })
+                        keyboard_input2 : this.state.keyboard_input2*10 + num
+                    });
                 }
-                else
-                {
-                    let temp = parseInt(this.state.keyboard_input2.toString().split(".")[1])
-                    let temp2 = temp*10 + num
-                    let len = temp2.toString().length
-                    this.setState({
-                        keyboard_input2 : parseInt(this.state.keyboard_input2) + temp2/(Math.pow(10,len))
-                    })
-                }
-            }
-            else if(!this.state.decimal_flag2)
-            {
-                this.setState({
-                    keyboard_input2 : this.state.keyboard_input2*10 + num
-                });
-            }
+            }   
         }
     }
 
@@ -273,7 +279,7 @@ class App extends Component{
                 <OutputScreen
                     num1 = {this.state.keyboard_input}
                     num2 = {this.state.keyboard_input2}
-                    op = {this.state.operation_object['op']}
+                    op = {this.state.operation_object}
                     op_flag = {this.state.operator_flag}
                     result = {this.state.result}
                     // decimal_flag1 = {this.state.decimal_flag1}
